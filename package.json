@@ -1,0 +1,30 @@
+{
+  "name": "electron-quick-start",
+  "version": "1.0.0",
+  "description": "A minimal Electron application",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "repository": "https://github.com/electron/electron-quick-start",
+  "keywords": [
+    "Electron",
+    "quick",
+    "start",
+    "tutorial",
+    "demo"
+  ],
+  "author": "GitHub",
+  "license": "CC0-1.0",
+  "devDependencies": {
+    "electron": "https://github.com/castlabs/electron-releases#v3.0.0-wvvmp-beta.10"
+  },
+  "dependencies": {
+    "dateformat": "^3.0.3",
+    "electron": "https://github.com/castlabs/electron-releases#v3.0.0-wvvmp-beta.10",
+    "jquery": "^3.3.1",
+    "nedb": "^1.8.0",
+    "socket.io-client": "^2.1.1",
+    "tmp": "0.0.33"
+  }
+}
