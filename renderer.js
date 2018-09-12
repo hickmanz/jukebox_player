@@ -8,7 +8,7 @@
 // All of the Node.js APIs are available in this process.
 
 
-const serverAddr = 'https://api.zaqify.com:8080/'
+const serverAddr = 'http://api.zaqify.com:8080/'
 var player;
 var tokenData;
 var player_id;
