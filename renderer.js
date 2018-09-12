@@ -8,7 +8,9 @@
 // All of the Node.js APIs are available in this process.
 
 
-const serverAddr = 'http://api.zaqify.com:8080/'
+
+//const serverAddr = 'http://api.zaqify.com:8080/'
+const serverAddr = 'http://localhost:8080/'
 var player;
 var tokenData;
 var player_id;
@@ -17,14 +19,14 @@ var player_id;
 window.onSpotifyWebPlaybackSDKReady = () => {
 
     player = new Spotify.Player({
-        name: 'Mixer Jukebox',
+        name: 'Zaqify Jukebox',
         getOAuthToken: cb => {
         socket.emit('player-get-token', 'holder', function(data){
             tokenData = data
             var token = tokenData.access_token 
             console.log(token)
             cb(token);
-
+            return(true)
         })
         
         }
@@ -59,18 +61,20 @@ window.onSpotifyWebPlaybackSDKReady = () => {
     // Connect to the player!
     player.connect();
 };
+const socket = require('socket.io-client')(serverAddr);
 
 const $ = require('jquery');
 
 const path = require('path')
-const fs = require('fs-extra')
 var tmp = require('tmp');
 const remote = require('electron').remote; 
 const app = remote.app;
 const dateFormat = require('dateformat');
 //const nav = require('./assets/nav')
-const socket = require('socket.io-client')(serverAddr);
 
+socket.on('test',function(data){
+  console.dir(data)
+})
 socket.on('connect', function(){
   console.log('connected to server')
   player.connect().then(success => {
@@ -95,6 +99,7 @@ socket.on('updateTokenData', function(data){
 
 })
 socket.on('set-volume', function(data){
+  console.dir(data)
   player.setVolume(data)
 })
 socket.on('time-check', function(data){
@@ -117,7 +122,4 @@ socket.on('seek', function(position){
     console.log('Changed position!');
   });
 })
-
-const Datastore = require('nedb');
-const db = new Datastore({ filename: path.join('./', 'main.db'), autoload: true, timestampData: true  });
 

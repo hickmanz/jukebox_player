@@ -4,6 +4,7 @@ const {app, BrowserWindow} = require('electron')
 const path = require('path');
 const url = require('url');
 const fs = require('fs');
+const isDev = require('electron-is-dev');
 
 app.commandLine.appendSwitch('autoplay-policy', 'no-user-gesture-required')
 
@@ -24,8 +25,9 @@ function createWindow () {
       protocol: 'file:',
       slashes: true
     }))
-    
-  win.webContents.openDevTools()
+    if (isDev) {
+      win.webContents.openDevTools()
+    }
 }
 
 //app.on('ready', createWindow)
